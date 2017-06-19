@@ -1,192 +1,89 @@
 package spring.organizer.dto;
 
+/**
+ * Created by radu on 19.06.2017.
+ */
 public class UserDTO {
 
-	private Integer id;
-	private String firstname;
-	private String surname;
-	private String email;
-	private String address;
-	private String postcode;
-	private String city;
-	private String country;
-	private String telephone;
-	private String IBAN;
+    private Integer id;
+    private String name;
+    private String email;
+    private String role;
 
-	public UserDTO() {
-	}
+    public UserDTO() {
+    }
 
-	public UserDTO(Integer id, String firstname, String surname,  String email, String address, String postcode, String city, String country,
-			String telephone, String IBAN) {
-		super();
-		this.id = id;
-		this.firstname= firstname;
-		this.surname = surname;
-		this.email = email;
-		this.address = address;
-		this.postcode = postcode;
-		this.city = city;
-		this.country = country;
-		this.telephone = telephone;
-		this.IBAN = IBAN;
-	}
+    public UserDTO(Integer id, String name, String email, String role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.role = role;
+    }
 
+    public Integer getId() {
+        return id;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public String getEmail() {
+        return email;
+    }
 
-	public String getFirstname() {
-		return firstname;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getPostcode() {
-		return postcode;
-	}
-
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getTelephone() {
-		return telephone;
-	}
-
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-
-	public String getIBAN() {
-		return IBAN;
-	}
-
-	public void setIBAN(String IBAN) {
-		this.IBAN = IBAN;
-	}
+    public void setRole(String role) {
+        this.role = role;
+    }
 
 
 
+    public static class Builder{
 
-	public static class Builder {
-		private Integer nestedid;
-		private String nestedfirstname;
-		private String nestedsurname;
-		private String nestedemail;
-		private String nestedaddress;
-		private String nestedpostcode;
-		private String nestedcity;
-		private String nestedcountry;
-		private String nestedtelephone;
-		private String nestedIBAN;
-		private String nestedfullname;
+        private Integer nestedid;
+        private String nestedname;
+        private String nestedemail;
+        private String nestedrole;
 
-		public Builder id(int id) {
-			this.nestedid = id;
-			return this;
-		}
+        public Builder id(int id){
+            this.nestedid = id;
+            return this;
+        }
 
-		public Builder firstname(String name) {
-			this.nestedfirstname = name;
-			return this;
-		}
-		
-		public Builder surname(String name) {
-			this.nestedsurname = name;
-			return this;
-		}
+        public Builder name(String name){
+            this.nestedname = name;
+            return this;
+        }
 
-		public Builder email(String email) {
-			this.nestedemail = email;
-			return this;
-		}
+        public Builder email(String email){
+            this.nestedemail = email;
+            return this;
+        }
 
-		public Builder address(String address) {
-			this.nestedaddress = address;
-			return this;
-		}
+        public Builder role(String role){
+            this.nestedrole = role;
+            return this;
+        }
 
-		public Builder postcode(String postcode) {
-			this.nestedpostcode = postcode;
-			return this;
-		}
+        public UserDTO create(){
+            return new UserDTO(nestedid, nestedname, nestedemail, nestedrole);
+        }
 
-		public Builder city(String city) {
-			this.nestedcity = city;
-			return this;
-		}
-
-		public Builder country(String country) {
-			this.nestedcountry = country;
-			return this;
-		}
-
-		public Builder telephone(String telephone) {
-			this.nestedtelephone = telephone;
-			return this;
-		}
-
-		public Builder IBAN(String iban) {
-			this.nestedIBAN = iban;
-			return this;
-		}
-
-
-
-		public UserDTO create() {
-			return new UserDTO(nestedid, nestedfirstname,nestedsurname, nestedemail, nestedaddress, nestedpostcode,
-					nestedcity, nestedcountry, nestedtelephone, nestedIBAN);
-		}
-
-	}
-
+    }
 }
