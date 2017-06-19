@@ -1,0 +1,7 @@
+Create in Mysql a schema: spring-demo 
+
+Import project in Eclipse : File>Import>Existing Maven Project
+Run as: Right Click on Project> Run On Server (on already configured Tomcat Server)
+
+Access the REST endpoints using: localhost:8080/spring-demo/user/all
+Where all the users from db will be displayed in an JSON format
