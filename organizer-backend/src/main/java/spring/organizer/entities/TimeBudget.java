@@ -16,6 +16,7 @@ public class TimeBudget implements Serializable {
     private Time totalTime;
     private Time bookedTime;
     private Integer goalId;
+    private Double deControl;
 
     public TimeBudget() {
     }
@@ -64,4 +65,5 @@ public class TimeBudget implements Serializable {
     public void setGoalId(Integer goalId) {
         this.goalId = goalId;
     }
+
 }

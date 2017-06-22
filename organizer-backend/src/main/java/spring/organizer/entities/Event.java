@@ -119,4 +119,5 @@ public class Event implements Serializable{
     public void setGoalId(Integer goalId) {
         this.goalId = goalId;
     }
+
 }
