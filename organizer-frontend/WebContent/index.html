@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="angularjs-demo">
+<head lang="en">
+<meta charset="UTF-8">
+<title>AngularJS DEMO</title>
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+
+<body>
+	<div class="container">
+		<div ng-view=""></div>
+	</div>
+
+	<!-- LIBS -->
+	<script src="assets/js/angular.min.js"></script>
+	<script src="assets/js/angular-route.min.js"></script>
+	<script src="//code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
+
+	<!-- APP -->
+	<script src="app/config/app.js"></script>
+	<script src="app/config/config.js"></script>
+	<!-- CONTROLLERS -->
+	<script src="app/controllers/navControllers.js"></script>
+	<script src="app/controllers/userControllers.js"></script>
+	<script src="app/controllers/loginController.js"></script>
+	<!-- SERVICES -->
+	<script src="app/services/authenticateService.js"></script>
+	<script src="app/services/flashService.js"></script>
+	<script src="app/services/userServiceOld.js"></script>
+	<script src="app/services/userService.js"></script>
+</body>
+</html>
