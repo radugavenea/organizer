@@ -49,95 +49,95 @@ public class UserOldServiceTest {
 		assertTrue("One entity inserted", fromDB.size() == 2);
 	}
     
-	@Test
-	public void testGetByIdSuccessful() {
+//	@Test
+//	public void testGetByIdSuccessful() {
+//
+//        UserDTO dto = new UserDTO.Builder()
+//                .name("First")
+//                .email("UserOld")
+//                .role("Cluj")
+//                .create();
+//
+//		int userId = userService.create(dto);
+//		UserDTO fromDB = userService.findUserById(userId);
+//
+//		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
+//		assertTrue("Email ", dto.getEmail().equals(fromDB.getEmail()));
+//		assertTrue("Role ", dto.getRole().equals(fromDB.getRole()));
+//	}
+//
+//
+//	@Test
+//	public void testGetByIdDoubleFirstName() {
+//
+//		UserDTO dto = new UserDTO.Builder()
+//				.name("First First2")
+//				.email("user@gmail.com")
+//				.role("UserOld")
+//				.create();
+//
+//		int userId = userService.create(dto);
+//		UserDTO fromDB = userService.findUserById(userId);
+//
+//		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
+//	}
 
-        UserDTO dto = new UserDTO.Builder()
-                .name("First")
-                .email("UserOld")
-                .role("Cluj")
-                .create();
+//
+//	@Test(expected = EntityValidationException.class)
+//	public void testCreateUnsuccessfulEmail() {
+//
+//		UserDTO dto = new UserDTO.Builder()
+//				.name("First First2")
+//				.role("UserOld")
+//				.create();
+//
+//		int userId = userService.create(dto);
+//		UserDTO fromDB = userService.findUserById(userId);
+//
+//		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
+//	}
+//
+//	@Test(expected = EntityValidationException.class)
+//	public void testCreateUnsuccessfulSurname() {
+//
+//		UserDTO dto = new UserDTO.Builder()
+//				.name("First First2")
+//				.email("user@gmail.com")
+//				.create();
 
-		int userId = userService.create(dto);
-		UserDTO fromDB = userService.findUserById(userId);
-
-		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
-		assertTrue("Email ", dto.getEmail().equals(fromDB.getEmail()));
-		assertTrue("Role ", dto.getRole().equals(fromDB.getRole()));
-	}
-
-
-	@Test
-	public void testGetByIdDoubleFirstName() {
-
-		UserDTO dto = new UserDTO.Builder()
-				.name("First First2")
-				.email("user@gmail.com")
-				.role("UserOld")
-				.create();
-
-		int userId = userService.create(dto);
-		UserDTO fromDB = userService.findUserById(userId);
-
-		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
-	}
-
-
-	@Test(expected = EntityValidationException.class)
-	public void testCreateUnsuccessfulEmail() {
-
-		UserDTO dto = new UserDTO.Builder()
-				.name("First First2")
-				.role("UserOld")
-				.create();
-
-		int userId = userService.create(dto);
-		UserDTO fromDB = userService.findUserById(userId);
-
-		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
-	}
-
-	@Test(expected = EntityValidationException.class)
-	public void testCreateUnsuccessfulSurname() {
-
-		UserDTO dto = new UserDTO.Builder()
-				.name("First First2")
-				.email("user@gmail.com")
-				.create();
-
-		int userId = userService.create(dto);
-		UserDTO fromDB = userService.findUserById(userId);
-
-		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
-	}
-
-
-	@Test(expected = EntityValidationException.class)
-	public void testCreateUnsuccessfulFirstname() {
-
-		UserDTO dto = new UserDTO.Builder()
-				.role("Surname")
-				.email("user@gmail.com")
-				.create();
-
-		int userId = userService.create(dto);
-		UserDTO fromDB = userService.findUserById(userId);
-
-		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
-	}
-
-	@Test(expected = ResourceNotFoundException.class)
-	public void testGetByIdUnsuccessful() {
-
-        UserDTO dto = new UserDTO.Builder()
-                .name("First")
-				.email("user@gmail.com")
-                .role("UserOld")
-                .create();
-
-		int userId = userService.create(dto);
-		userService.findUserById(userId + 1);
-
-	}
+//		int userId = userService.create(dto);
+//		UserDTO fromDB = userService.findUserById(userId);
+//
+//		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
+//	}
+//
+//
+//	@Test(expected = EntityValidationException.class)
+//	public void testCreateUnsuccessfulFirstname() {
+//
+//		UserDTO dto = new UserDTO.Builder()
+//				.role("Surname")
+//				.email("user@gmail.com")
+//				.create();
+//
+//		int userId = userService.create(dto);
+//		UserDTO fromDB = userService.findUserById(userId);
+//
+//		assertTrue("Name ", dto.getName().equals(fromDB.getName()));
+//	}
+//
+//	@Test(expected = ResourceNotFoundException.class)
+//	public void testGetByIdUnsuccessful() {
+//
+//        UserDTO dto = new UserDTO.Builder()
+//                .name("First")
+//				.email("user@gmail.com")
+//                .role("UserOld")
+//                .create();
+//
+//		int userId = userService.create(dto);
+//		userService.findUserById(userId + 1);
+//
+//	}
 
 }

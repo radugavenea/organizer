@@ -8,15 +8,17 @@ public class UserDTO {
     private Integer id;
     private String name;
     private String email;
+    private String password;
     private String role;
 
     public UserDTO() {
     }
 
-    public UserDTO(Integer id, String name, String email, String role) {
+    public UserDTO(Integer id, String name, String email, String password, String role) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
         this.role = role;
     }
 
@@ -44,6 +46,14 @@ public class UserDTO {
         this.email = email;
     }
 
+    public String getPassword(){
+        return this.password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     public String getRole() {
         return role;
     }
@@ -59,6 +69,7 @@ public class UserDTO {
         private Integer nestedid;
         private String nestedname;
         private String nestedemail;
+        private String nestedpassword;
         private String nestedrole;
 
         public Builder id(int id){
@@ -81,8 +92,13 @@ public class UserDTO {
             return this;
         }
 
+        public Builder password(String password) {
+            this.nestedpassword = password;
+            return this;
+        }
+
         public UserDTO create(){
-            return new UserDTO(nestedid, nestedname, nestedemail, nestedrole);
+            return new UserDTO(nestedid, nestedname, nestedemail, nestedpassword, nestedrole);
         }
 
     }

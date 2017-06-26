@@ -45,6 +45,7 @@ public class UserService {
                 .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
+                .password(user.getPassword())
                 .role(user.getRole())
                 .create();
         return userDTO;
@@ -64,13 +65,13 @@ public class UserService {
         return userDTO;
     }
 
-    public int create(UserDTO userDTO) {
-        int id = 0;
-
-        // to be modified
-
-        return id;
+    public int saveOrUpdate(User user) {
+        userRepository.save(user);
+        return user.getId();
     }
 
-
+    public int deleteUserById(int id) {
+        userRepository.delete(id);
+        return id;
+    }
 }

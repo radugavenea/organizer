@@ -11,10 +11,6 @@
             templateUrl : 'app/views/login/login.html',
             controller : 'LoginController',
             controllerAs : 'vm'
-        }).when('/home',{
-            templateUrl : 'app/views/homeview.html',
-            controller : 'HomeController',
-            controllerAs : 'homeCtrl'
         }).otherwise({redirectTo : '/login'})
     });
 
@@ -26,14 +22,14 @@
 
             (function initController() {
                 // reset login status
-                AuthenticationService.ClearCredentials();
+                AuthenticationService.clearCredentials();
             })();
 
             function login() {
                 vm.dataLoading = true;
-                AuthenticationService.Login(vm.username, vm.password, function (response) {
-                    if (response.name) {
-                        AuthenticationService.SetCredentials(vm.username, vm.password);
+                AuthenticationService.login(vm.email, vm.password, function (response) {
+                    if (response) {
+                        AuthenticationService.setCredentials(vm.email, vm.password,response.name,response.role);
                         if(response.role === 'admin'){
                             $location.path('/users');
                         }

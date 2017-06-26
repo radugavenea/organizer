@@ -10,29 +10,31 @@
 
             var service = {};
 
-            service.Login = Login;
-            service.SetCredentials = SetCredentials;
-            service.ClearCredentials = ClearCredentials;
+            service.login = login;
+            service.setCredentials = setCredentials;
+            service.clearCredentials = clearCredentials;
 
             return service;
 
-            function Login(username, password, callback) {
+            function login(username, password, callback) {
                 $http.post(config.API_URL + '/login', { email: username, password: password })
                     .success(function (response) {
                             callback(response);
                     });
             }
 
-            function SetCredentials(username, password, role) {
+            function setCredentials(username, password, name, role) {
                 var authdata = Base64.encode(username + ':' + password);
 
                 $rootScope.globals = {
                     currentUser: {
-                        username: username,
+                        email: username,
                         authdata: authdata,
+                        name: name,
                         role: role
                     }
                 };
+
 
                 // set default auth header for http requests
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
@@ -43,7 +45,7 @@
                 $cookies.putObject('globals', $rootScope.globals, { expires: cookieExp });
             }
 
-            function ClearCredentials() {
+            function clearCredentials() {
                 $rootScope.globals = {};
                 $cookies.remove('globals');
                 $http.defaults.headers.common.Authorization = 'Basic';

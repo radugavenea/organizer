@@ -4,13 +4,13 @@
 
 	homeModule.config(function($routeProvider) {
 		$routeProvider.when('/home', {
-			templateUrl : 'app/views/homeview.html',
-			controller : 'HomeController',
-			controllerAs : "homeCtrl"
+			templateUrl : 'app/views/home/homeview.html',
+			controller : 'HomeController2',
+			controllerAs : "homeCtrl2"
 		})
 	});
 
-	homeModule.controller('HomeController', function($scope) {
+	homeModule.controller('HomeController2', function($scope) {
 		$scope.message = "Message from the controller...";
 	});
 

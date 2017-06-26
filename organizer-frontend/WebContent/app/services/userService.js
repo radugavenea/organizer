@@ -32,15 +32,15 @@
             }
 
             function Create(user) {
-                return $http.post(config.API_URL + '/user/add', user).then(handleSuccess, handleError('Error creating user'));
+                return $http.post(config.API_URL + '/user/', user).then(handleSuccess, handleError('Error creating user'));
             }
 
-            function Update(user) {
-                return $http.put(config.API_URL + '/user/edit' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+            function Update(user, id) {
+                return $http.put(config.API_URL + '/user/' + id, user).then(handleSuccess, handleError('Error updating user'));
             }
 
             function Delete(id) {
-                return $http.delete(config.API_URL + '/user/delete' + id).then(handleSuccess, handleError('Error deleting user'));
+                return $http.delete(config.API_URL + '/user/' + id).then(handleSuccess, handleError('Error deleting user'));
             }
 
             // private functions
