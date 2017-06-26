@@ -19,21 +19,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserDTO findUserById(int id){
-        User user = userRepository.findById(id);
-        if(user == null) {
-            throw new ResourceNotFoundException(User.class.getSimpleName());
-        }
-
-        UserDTO userDTO = new UserDTO.Builder()
-                .id(user.getId())
-                .name(user.getName())
-                .email(user.getEmail())
-                .role(user.getRole())
-                .create();
-
-        return userDTO;
-    }
 
     public List<UserDTO> findAll() {
         List<User> users = userRepository.findAll();
@@ -50,6 +35,35 @@ public class UserService {
         return toReturn;
     }
 
+    public UserDTO findUserById(int id){
+        User user = userRepository.findById(id);
+        if(user == null) {
+            throw new ResourceNotFoundException(User.class.getSimpleName());
+        }
+
+        UserDTO userDTO = new UserDTO.Builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .create();
+        return userDTO;
+    }
+
+    public UserDTO findUserByEmail(String email){
+        User user = userRepository.findByEmail(email);
+        if(user == null){
+            throw new ResourceNotFoundException(User.class.getSimpleName());
+        }
+        UserDTO userDTO = new UserDTO.Builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .create();
+        return userDTO;
+    }
+
     public int create(UserDTO userDTO) {
         int id = 0;
 
@@ -57,4 +71,6 @@ public class UserService {
 
         return id;
     }
+
+
 }
