@@ -29,7 +29,7 @@
                 vm.dataLoading = true;
                 AuthenticationService.login(vm.email, vm.password, function (response) {
                     if (response) {
-                        AuthenticationService.setCredentials(vm.email, vm.password,response.name,response.role);
+                        AuthenticationService.setCredentials(response.id, vm.email, vm.password,response.name,response.role);
                         if(response.role === 'admin'){
                             $location.path('/users');
                         }

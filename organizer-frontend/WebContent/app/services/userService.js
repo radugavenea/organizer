@@ -10,36 +10,36 @@
 
             var service = {};
 
-            service.GetAll = GetAll;
-            service.GetById = GetById;
-            service.GetByUsername = GetByUsername;
-            service.Create = Create;
-            service.Update = Update;
-            service.Delete = Delete;
+            service.getAll = getAll;
+            service.getById = getById;
+            service.getByUsername = getByUsername;
+            service.insertUser = insertUser;
+            service.updateUser = updateUser;
+            service.deleteUser = deleteUser;
 
             return service;
 
-            function GetAll() {
+            function getAll() {
                 return $http.get(config.API_URL + '/user/all').then(handleSuccess, handleError('Error getting all users'));
             }
 
-            function GetById(id) {
+            function getById(id) {
                 return $http.get(config.API_URL + '/user/details/' + id).then(handleSuccess, handleError('Error getting user by id'));
             }
 
-            function GetByUsername(username) {
+            function getByUsername(username) {
                 return $http.get(config.API_URL + '/user/details/' + username).then(handleSuccess, handleError('Error getting user by username'));
             }
 
-            function Create(user) {
+            function insertUser(user) {
                 return $http.post(config.API_URL + '/user/', user).then(handleSuccess, handleError('Error creating user'));
             }
 
-            function Update(user, id) {
+            function updateUser(user, id) {
                 return $http.put(config.API_URL + '/user/' + id, user).then(handleSuccess, handleError('Error updating user'));
             }
 
-            function Delete(id) {
+            function deleteUser(id) {
                 return $http.delete(config.API_URL + '/user/' + id).then(handleSuccess, handleError('Error deleting user'));
             }
 

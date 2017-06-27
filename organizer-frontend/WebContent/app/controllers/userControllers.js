@@ -18,7 +18,7 @@
 	usersModule.controller('AllUsersController', [ '$scope', 'UserService',
 			function($scope, UserService) {
 				$scope.users = [];
-				var promise = UserService.GetAll();
+				var promise = UserService.getAll();
 				promise.then(
 					function (data) {
 						$scope.users = data;
@@ -46,7 +46,7 @@
             fetchAllUsers();
 
             function fetchAllUsers(){
-                UserService.GetAll()
+                UserService.getAll()
                     .then(
                         function(d) {
                             self.users = d;
@@ -58,7 +58,7 @@
             }
 
             function createUser(user){
-                UserService.Create(user)
+                UserService.insertUser(user)
                     .then(
                         fetchAllUsers,
                         function(errResponse){
@@ -68,7 +68,7 @@
             }
 
             function updateUser(user, id){
-                UserService.Update(user, id)
+                UserService.updateUser(user, id)
                     .then(
                         fetchAllUsers,
                         function(errResponse){
@@ -78,7 +78,7 @@
             }
 
             function deleteUser(id){
-                UserService.Delete(id)
+                UserService.deleteUser(id)
                     .then(
                         fetchAllUsers,
                         function(errResponse){

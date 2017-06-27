@@ -1,4 +1,4 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" xmlns="http://www.w3.org/1999/html">
 
 <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
@@ -13,11 +13,39 @@
     /* Set gray background color and 100% height */
     .sidenav {
         padding-top: 100px;
-        background-color: #f6f6f6;
+        /*background-color: #f6f6f6;*/
         height: 100vh;
 
     }
 
+    .textarea-custom {
+        border: none;
+        overflow: auto;
+        outline: none;
+
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .panel-height {
+        min-height:80vh;
+    }
+
+    .nopadding-nomargin{
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .form-padding {
+        padding: 15px;
+    }
+
+    .row-margin-bottom{
+        margin-bottom: 10px;
+    }
 
     /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
@@ -43,8 +71,8 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Add new goal</a> </li>
-                        <li><a href="#">Add new event</a> </li>
+                        <li><a href="">Add new goal</a> </li>
+                        <li><a href="">Add new event</a> </li>
                     </ul>
                 </li>
                 <li class="dropdown" >
@@ -53,22 +81,29 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a> </li>
-                    <li><a href="#">Reports</a> </li>
+                    <li><a href="">Profile</a> </li>
+                    <li><a href="">Reports</a> </li>
                     <li><a href="" ng-click="homeCtrl.logout()">Logout</a> </li>
                 </ul>
             </li>
             </ul>
         </div>
     </nav>
+</div>
 
+
+<div ng-controller="GoalController as goalCtrl">
     <div class="container container-fluid">
         <div class="row row-no-margin">
             <div class="col-md-3 sidenav nopadding">
                 <h4>{{globals.currentUser.name}}'s Notebook</h4>
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#section1">Goals</a></li>
-                    <li><a href="#section2">Events</a></li>
+                    <li class="active">
+                        <a href="">Goals</a>
+                    </li>
+                    <li>
+                        <a href="">Events</a>
+                    </li>
                 </ul><br>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search..">
@@ -81,14 +116,102 @@
             </div>
 
             <div class="col-md-4" style = "padding-top:100px">
-                <h4><small>
-                    Goals in here
-                </small></h4>
 
+                    <div class="panel panel-default panel-height">
+                        <div class="panel-heading">Your list of Goals</div>
+                        <div class="panel-body">
+                            <!--<a ng-repeat="item in goals" ng-href="#">-->
+                                <!--<div>{{item.name}}</div>-->
+                            <!--</a>-->
+                            <table class="table table-hover">
+                            <tbody>
+                                <tr ng-repeat="item in goalCtrl.goals" ng-click="goalCtrl.display(item)">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.info}}</td>
+                                </tr>
+                            </tbody></table>
+                        </div>
+
+                    </div>
             </div>
 
-            <div class="col-md-5 sidenav nopadding pull-right">
-                <h4><small>Here goes the infos of selected element</small></h4>
+            <div class="col-md-5 sidenav">
+
+                <div class="panel panel-default panel-height">
+                    <div class="panel-heading">{{goal.name}}</div>
+                    <div class="panel-body">
+
+                        <div class="formcontainer form-padding">
+                            <form ng-submit="goalCtrl.submit()" name="myForm" class="form-horizontal">
+                                <input type="hidden" ng-model="ctrl.user.id" />
+
+                                <div class="row row-margin-bottom">
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control textarea-custom" rows="5" id="description" ng-model="goal.description" placeholder="enter a description.."></textarea>
+                                </div>
+
+                                <div class="row row-margin-bottom">
+                                    <label for="actionplan">Action Plan</label>
+                                    <textarea class="form-control textarea-custom" rows="5" id="actionPlan" ng-model="goal.actionPlan" placeholder="enter an action plan.."></textarea>
+                                </div>
+
+                                <div class="row row-margin-bottom">
+                                    <label for="progress">Progress Tracker</label>
+                                    <textarea class="form-control textarea-custom" rows="5" id="progress" ng-model="goal.progress" placeholder="enter how you are going to measure progress.."></textarea>
+                                </div>
+
+                                <div class="row row-margin-bottom">
+                                    <label for="example">Example</label>
+                                    <textarea class="form-control textarea-custom" rows="5" id="example" ng-model="goal.example" placeholder="enter a concrete example in which achieving this goal is going to help you .."></textarea>
+                                </div>
+
+                                <div class="row row-margin-bottom">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-md-6 control-lable" for="totalBudget">Total time budget: </label>
+                                        <div class="col-md-3">
+                                            <input type="text" ng-model="goal.totalBudget" id="totalBudget" class="username form-control input-sm textarea-custom" placeholder="...">
+                                        </div>
+                                        <span>hours</span>
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin-bottom">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-md-6 control-lable">Time budget available: </label>
+                                        <div class="col-md-3">{{goal.availableBudget}}
+                                        </div>
+                                        <span>hours</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-actions floatRight">
+                                        <!--<button type="submit" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">{{!user.id ? 'Add' : 'Update'}}</button>-->
+                                        <input type="submit" value="{{!goal.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                                        <button type="button" ng-click="goalCtrl.delete()" class="btn btn-danger btn-sm">Delete</button>
+                                        <!--<button type="button" ng-click="goalCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>-->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!--<h4>Description</h4>-->
+                        <!--<div>{{goal.description}}</div>-->
+                        <!--<h4>Action Plan</h4>-->
+                        <!--<div>{{goal.actionPlan}}</div>-->
+                        <!--<h4>Progress evaluation</h4>-->
+                        <!--<div>{{goal.progress}}</div>-->
+                        <!--<h4>Example</h4>-->
+                        <!--<div>{{goal.example}}</div>-->
+                        <!--<h4>Total time budget:</h4>-->
+                        <!--<h4>Time budget available:</h4>-->
+
+                        <!--<input type="submit" value="{{!goal.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">-->
+                        <!--<button type="button" ng-click="goalCtrl.remove()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Delete</button>-->
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>

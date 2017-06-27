@@ -2,12 +2,13 @@
 	var app = angular.module('angularjs-demo', [
 		'ngRoute', 'configModule', 'ngCookies', 'ui.bootstrap',
         // 'navControllers',
-		'userControllers',
-		// 'userServices',
-		'loginController',
+        'loginController',
+        'authenticateService',
+        'flashService',
+        'userControllers',
 		'userService',
-		'authenticateService',
-		'flashService',
-        'homeController'
+        'homeController',
+		'goalController',
+		'goalService'
     ])
 })();

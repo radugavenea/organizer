@@ -23,20 +23,24 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @RequestMapping(value= "/all", method = RequestMethod.GET)
     public List<UserDTO> getAllUsers() {
         return userService.findAll();
     }
+
 
     @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
     public UserDTO getUserById(@PathVariable("id") int id){
         return userService.findUserById(id);
     }
 
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public int insertUser(@RequestBody User user) {
         return userService.saveOrUpdate(user);
     }
+
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<UserDTO> updateUser(@PathVariable("id") int id, @RequestBody User user){
