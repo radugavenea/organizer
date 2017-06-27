@@ -18,7 +18,7 @@
             return service;
 
             function getAllByUserId(id) {
-                return $http.get(config.API_URL + '/goals/' + id).then(handleSuccess, handleError('Error getting all goals'));
+                return $http.get(config.API_URL + '/goals/all/' + id).then(handleSuccess, handleError('Error getting all goals'));
             }
 
             function insertGoal(goal) {

@@ -6,10 +6,14 @@
     var homeModule = angular.module('homeController', ['ngRoute']);
 
     homeModule.config(function ($routeProvider) {
-        $routeProvider.when('/home', {
+        $routeProvider.when('/home/goals', {
             templateUrl: 'app/views/home/goals.html',
             controller: 'HomeController',
             controllerAs: 'homeCtrl'
+        }).when('/home/events',{
+            templateUrl: 'app/views/home/events.html',
+            controller: 'EventController',
+            controllerAs: 'eventCtrl'
         })
     });
 

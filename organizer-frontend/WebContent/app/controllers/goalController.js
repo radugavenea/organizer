@@ -5,6 +5,14 @@
     
     var goalModule = angular.module('goalController', ['ngRoute']);
 
+    // goalModule.config(function ($routeProvider) {
+    //     $routeProvider.when('/goals', {
+    //         templateUrl : 'app/views/home/goals.html',
+    //         controller : 'GoalController',
+    //         controllerAs : 'goalCtrl'
+    //     })
+    // });
+
     goalModule.controller("GoalController", ['$scope', '$rootScope', '$location','GoalService',
         function ($scope, $rootScope, $location, GoalService) {
             var self = this;
@@ -17,6 +25,7 @@
             self.edit = edit;
             self.remove = remove;
             self.reset = reset;
+            self.goToEvents = goToEvents;
 
             fetchAllGoals();
 
@@ -104,6 +113,11 @@
             function display(goal) {
                 // console.log(goal);  // test
                 $scope.goal = goal;
+            }
+
+            function goToEvents(){
+                // console.log($rootScope.globals);    //test
+                $location.path('/home/events');
             }
 
         }

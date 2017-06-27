@@ -1,7 +1,6 @@
 (function() {
 	var app = angular.module('angularjs-demo', [
 		'ngRoute', 'configModule', 'ngCookies', 'ui.bootstrap',
-        // 'navControllers',
         'loginController',
         'authenticateService',
         'flashService',
@@ -9,6 +8,8 @@
 		'userService',
         'homeController',
 		'goalController',
-		'goalService'
+		'goalService',
+        'eventController',
+        'eventService'
     ])
 })();

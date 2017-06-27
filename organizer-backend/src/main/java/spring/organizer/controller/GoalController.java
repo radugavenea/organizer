@@ -28,7 +28,7 @@ public class GoalController {
     @Autowired
     private TimeBudgetService timeBudgetService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/all/{id}", method = RequestMethod.GET)
     public List<GoalDTO> getAllGoalsByUserId(@PathVariable("id") int id){
         return goalService.findAllGoalDTOsById(id);
     }

@@ -34,7 +34,7 @@
                             $location.path('/users');
                         }
                         else if(response.role === 'user'){
-                            $location.path('/home');
+                            $location.path('/home/goals');
                         }
                         else {
                             $location.path('/login')

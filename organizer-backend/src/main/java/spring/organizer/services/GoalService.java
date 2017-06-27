@@ -25,11 +25,7 @@ public class GoalService {
     private TimeBudgetRepository timeBudgetRepository;
 
     public List<Goal> findAllGoalsByUserId(int id){
-        List<Goal> list = goalRepository.findAll();
-
-        return list.stream()
-                .filter(e -> e.getUserId() == id)
-                .collect(Collectors.toList());
+        return goalRepository.findAllByUserId(id);
     }
 
     public Goal findGoalById(int id){

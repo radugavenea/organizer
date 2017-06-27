@@ -92,17 +92,17 @@
 </div>
 
 
-<div ng-controller="GoalController as goalCtrl">
+<div ng-controller="EventController as eventCtrl">
     <div class="container container-fluid">
         <div class="row row-no-margin">
             <div class="col-md-3 sidenav nopadding">
                 <h4>{{globals.currentUser.name}}'s Notebook</h4>
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active">
-                        <a href="">Goals</a>
-                    </li>
                     <li>
-                        <a href="">Events</a>
+                        <a ng-click="eventCtrl.goToGoals()">Goals</a>
+                    </li>
+                    <li class="active">
+                        <a>Events</a>
                     </li>
                 </ul><br>
                 <div class="input-group">
@@ -118,14 +118,14 @@
             <div class="col-md-4" style = "padding-top:100px">
 
                 <div class="panel panel-default panel-height">
-                    <div class="panel-heading">Your list of Goals</div>
+                    <div class="panel-heading">Your's personal events</div>
                     <div class="panel-body">
                         <!--<a ng-repeat="item in goals" ng-href="#">-->
                         <!--<div>{{item.name}}</div>-->
                         <!--</a>-->
                         <table class="table table-hover">
                             <tbody>
-                            <tr ng-repeat="item in goalCtrl.goals" ng-click="goalCtrl.edit(item.id)">
+                            <tr ng-repeat="item in eventCtrl.events" ng-click="eventCtrl.edit(item.id)">
                                 <td>{{item.name}}</td>
                                 <!--<td>{{item.info}}</td>-->
                             </tr>
@@ -139,60 +139,64 @@
 
                 <div class="panel panel-default panel-height">
                     <div class="panel-heading">
-                        <input type="text" ng-model="goalCtrl.goal.name" class="username form-control input-sm textarea-custom" placeholder="...enter goal name">
+                        <input type="text" ng-model="eventCtrl.event.name" class="username form-control input-sm textarea-custom" placeholder="...enter event name">
                     </div>
                     <div class="panel-body">
 
                         <div class="formcontainer form-padding">
                             <form ng-submit="goalCtrl.submit()" name="myForm" class="form-horizontal">
-                                <input type="hidden" ng-model="goalCtrl.goal.id" />
+                                <input type="hidden" ng-model="eventCtrl.event.id" />
 
-                                <div class="row row-margin-bottom">
-                                    <label for="description">Description</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="description" ng-model="goalCtrl.goal.description" placeholder="...enter a description of the goal"></textarea>
-                                </div>
-
-                                <div class="row row-margin-bottom">
-                                    <label for="actionplan">Action Plan</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="actionPlan" ng-model="goalCtrl.goal.actionPlan" placeholder="...enter an action plan"></textarea>
-                                </div>
-
-                                <div class="row row-margin-bottom">
-                                    <label for="progress">Progress Tracker</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="progress" ng-model="goalCtrl.goal.progress" placeholder="...enter how you are going to measure progress"></textarea>
-                                </div>
-
-                                <div class="row row-margin-bottom">
-                                    <label for="example">Example</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="example" ng-model="goalCtrl.goal.example" placeholder="...enter a concrete example, describing a situation in which achieving this goal might help you"></textarea>
-                                </div>
 
                                 <div class="row row-margin-bottom">
                                     <div class="form-group col-md-12">
-                                        <label class="col-md-6 control-lable" for="totalBudget">Total time budget: </label>
-                                        <div class="col-md-3">
-                                            <input type="text" ng-model="goalCtrl.goal.totalBudget" id="totalBudget" class="username form-control input-sm textarea-custom" placeholder="...">
+                                        <label class="col-md-6 control-lable" for="startDate">Start date: </label>
+                                        <div class="col-md-6">
+                                            <input type="text" ng-model="eventCtrl.event.startDate" id="startDate" class="username form-control input-sm textarea-custom" placeholder="...">
                                         </div>
-                                        <span>hours</span>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin-bottom">
                                     <div class="form-group col-md-12">
-                                        <label class="col-md-6 control-lable">Time budget available: </label>
-                                        <div class="col-md-3">
-                                            <span>{{goalCtrl.goal.totalBudget - goalCtrl.goal.bookedBudget}}</span>
+                                        <label class="col-md-6 control-lable" for="endDate">End date: </label>
+                                        <div class="col-md-6">
+                                            <input type="text" ng-model="eventCtrl.event.endDate" id="endDate" class="username form-control input-sm textarea-custom" placeholder="...">
                                         </div>
-                                        <span>hours</span>
                                     </div>
                                 </div>
+
+                                <div class="row row-margin-bottom">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-md-6 control-lable" for="remainderDate">Remainder date: </label>
+                                        <div class="col-md-6">
+                                            <input type="text" ng-model="eventCtrl.event.remainderDate" id="remainderDate" class="username form-control input-sm textarea-custom" placeholder="...">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row row-margin-bottom">
+                                    <label for="example">Notes</label>
+                                    <textarea class="form-control textarea-custom" rows="4" id="example" ng-model="eventCtrl.event.note" placeholder="...enter note"></textarea>
+                                </div>
+
+                                <!--<div class="row row-margin-bottom">-->
+                                    <!--<div class="form-group col-md-12">-->
+                                        <!--<label class="col-md-6 control-lable">Time budget available: </label>-->
+                                        <!--<div class="col-md-3">-->
+                                            <!--<span>{{goalCtrl.goal.totalBudget - goalCtrl.goal.bookedBudget}}</span>-->
+                                        <!--</div>-->
+                                        <!--<span>hours</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
 
                                 <div class="row">
                                     <div class="form-actions floatRight">
                                         <!--<button type="submit" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">{{!user.id ? 'Add' : 'Update'}}</button>-->
-                                        <input type="submit" value="{{!goalCtrl.goal.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                                        <button type="button" ng-click="goalCtrl.remove(goalCtrl.goal.id)" class="btn btn-danger btn-sm">Delete</button>
-                                        <button type="button" ng-click="goalCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                                        <input type="submit" value="{{!eventCtrl.event.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                                        <button type="button" ng-click="eventCtrl.remove(goalCtrl.goal.id)" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="button" ng-click="eventCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                                     </div>
                                 </div>
                             </form>

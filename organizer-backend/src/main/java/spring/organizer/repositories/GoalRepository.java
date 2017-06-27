@@ -11,7 +11,10 @@ import java.util.List;
  */
 public interface GoalRepository extends JpaRepository<Goal, Integer> {
 
+    @Override
     List<Goal> findAll();
+
+    List<Goal> findAllByUserId(int id);
 
     @Override
     Goal save(Goal s);
