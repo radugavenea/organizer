@@ -125,9 +125,9 @@
                             <!--</a>-->
                             <table class="table table-hover">
                             <tbody>
-                                <tr ng-repeat="item in goalCtrl.goals" ng-click="goalCtrl.display(item)">
+                                <tr ng-repeat="item in goalCtrl.goals" ng-click="goalCtrl.edit(item.id)">
                                     <td>{{item.name}}</td>
-                                    <td>{{item.info}}</td>
+                                    <!--<td>{{item.info}}</td>-->
                                 </tr>
                             </tbody></table>
                         </div>
@@ -138,38 +138,40 @@
             <div class="col-md-5 sidenav">
 
                 <div class="panel panel-default panel-height">
-                    <div class="panel-heading">{{goal.name}}</div>
+                    <div class="panel-heading">
+                        <input type="text" ng-model="goalCtrl.goal.name" class="username form-control input-sm textarea-custom" placeholder="...enter goal name">
+                    </div>
                     <div class="panel-body">
 
                         <div class="formcontainer form-padding">
                             <form ng-submit="goalCtrl.submit()" name="myForm" class="form-horizontal">
-                                <input type="hidden" ng-model="ctrl.user.id" />
+                                <input type="hidden" ng-model="goalCtrl.goal.id" />
 
                                 <div class="row row-margin-bottom">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="description" ng-model="goal.description" placeholder="enter a description.."></textarea>
+                                    <textarea class="form-control textarea-custom" rows="5" id="description" ng-model="goalCtrl.goal.description" placeholder="...enter a description of the goal"></textarea>
                                 </div>
 
                                 <div class="row row-margin-bottom">
                                     <label for="actionplan">Action Plan</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="actionPlan" ng-model="goal.actionPlan" placeholder="enter an action plan.."></textarea>
+                                    <textarea class="form-control textarea-custom" rows="5" id="actionPlan" ng-model="goalCtrl.goal.actionPlan" placeholder="...enter an action plan"></textarea>
                                 </div>
 
                                 <div class="row row-margin-bottom">
                                     <label for="progress">Progress Tracker</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="progress" ng-model="goal.progress" placeholder="enter how you are going to measure progress.."></textarea>
+                                    <textarea class="form-control textarea-custom" rows="5" id="progress" ng-model="goalCtrl.goal.progress" placeholder="...enter how you are going to measure progress"></textarea>
                                 </div>
 
                                 <div class="row row-margin-bottom">
                                     <label for="example">Example</label>
-                                    <textarea class="form-control textarea-custom" rows="5" id="example" ng-model="goal.example" placeholder="enter a concrete example in which achieving this goal is going to help you .."></textarea>
+                                    <textarea class="form-control textarea-custom" rows="5" id="example" ng-model="goalCtrl.goal.example" placeholder="...enter a concrete example, describing a situation in which achieving this goal might help you"></textarea>
                                 </div>
 
                                 <div class="row row-margin-bottom">
                                     <div class="form-group col-md-12">
                                         <label class="col-md-6 control-lable" for="totalBudget">Total time budget: </label>
                                         <div class="col-md-3">
-                                            <input type="text" ng-model="goal.totalBudget" id="totalBudget" class="username form-control input-sm textarea-custom" placeholder="...">
+                                            <input type="text" ng-model="goalCtrl.goal.totalBudget" id="totalBudget" class="username form-control input-sm textarea-custom" placeholder="...">
                                         </div>
                                         <span>hours</span>
                                     </div>
@@ -178,7 +180,8 @@
                                 <div class="row row-margin-bottom">
                                     <div class="form-group col-md-12">
                                         <label class="col-md-6 control-lable">Time budget available: </label>
-                                        <div class="col-md-3">{{goal.availableBudget}}
+                                        <div class="col-md-3">
+                                            <span>{{goalCtrl.goal.totalBudget - goalCtrl.goal.bookedBudget}}</span>
                                         </div>
                                         <span>hours</span>
                                     </div>
@@ -187,27 +190,14 @@
                                 <div class="row">
                                     <div class="form-actions floatRight">
                                         <!--<button type="submit" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">{{!user.id ? 'Add' : 'Update'}}</button>-->
-                                        <input type="submit" value="{{!goal.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                                        <button type="button" ng-click="goalCtrl.delete()" class="btn btn-danger btn-sm">Delete</button>
-                                        <!--<button type="button" ng-click="goalCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>-->
+                                        <input type="submit" value="{{!goalCtrl.goal.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                                        <button type="button" ng-click="goalCtrl.remove(goalCtrl.goal.id)" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="button" ng-click="goalCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
 
-                        <!--<h4>Description</h4>-->
-                        <!--<div>{{goal.description}}</div>-->
-                        <!--<h4>Action Plan</h4>-->
-                        <!--<div>{{goal.actionPlan}}</div>-->
-                        <!--<h4>Progress evaluation</h4>-->
-                        <!--<div>{{goal.progress}}</div>-->
-                        <!--<h4>Example</h4>-->
-                        <!--<div>{{goal.example}}</div>-->
-                        <!--<h4>Total time budget:</h4>-->
-                        <!--<h4>Time budget available:</h4>-->
-
-                        <!--<input type="submit" value="{{!goal.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">-->
-                        <!--<button type="button" ng-click="goalCtrl.remove()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Delete</button>-->
                     </div>
 
                 </div>

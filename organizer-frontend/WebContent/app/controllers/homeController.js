@@ -7,7 +7,7 @@
 
     homeModule.config(function ($routeProvider) {
         $routeProvider.when('/home', {
-            templateUrl: 'app/views/home/homeview.html',
+            templateUrl: 'app/views/home/goals.html',
             controller: 'HomeController',
             controllerAs: 'homeCtrl'
         })

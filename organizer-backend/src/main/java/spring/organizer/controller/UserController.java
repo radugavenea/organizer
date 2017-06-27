@@ -37,8 +37,9 @@ public class UserController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public int insertUser(@RequestBody User user) {
-        return userService.saveOrUpdate(user);
+    public ResponseEntity<User> insertUser(@RequestBody User user) {
+        userService.saveOrUpdate(user);
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
 

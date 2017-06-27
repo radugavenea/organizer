@@ -18,19 +18,19 @@
             return service;
 
             function getAllByUserId(id) {
-                return $http.get(config.API_URL + '/home/goals/' + id).then(handleSuccess, handleError('Error getting all goals'));
+                return $http.get(config.API_URL + '/goals/' + id).then(handleSuccess, handleError('Error getting all goals'));
             }
 
             function insertGoal(goal) {
-                return $http.post(config.API_URL + '/home/goals/', goal).then(handleSuccess, handleError('Error creating goal'));
+                return $http.post(config.API_URL + '/goals/', goal).then(handleSuccess, handleError('Error creating goal'));
             }
 
             function updateGoal(goal, id) {
-                return $http.put(config.API_URL + '/home/goals/' + id, goal).then(handleSuccess, handleError('Error updating goal'));
+                return $http.put(config.API_URL + '/goals/' + id, goal).then(handleSuccess, handleError('Error updating goal'));
             }
 
             function deleteGoal(id) {
-                return $http.delete(config.API_URL + '/home/goals/' + id).then(handleSuccess, handleError('Error deleting goal'));
+                return $http.delete(config.API_URL + '/goals/' + id).then(handleSuccess, handleError('Error deleting goal'));
             }
 
             // private functions

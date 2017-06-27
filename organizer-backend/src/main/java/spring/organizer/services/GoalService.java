@@ -36,9 +36,9 @@ public class GoalService {
         return goalRepository.findById(id);
     }
 
-    public int insertOrUpdateGoal(Goal goal){
-        goalRepository.save(goal);
-        return goal.getId();
+    public Goal insertOrUpdateGoal(Goal goal){
+        return goalRepository.save(goal);
+//        return goal.getId();
     }
 
     public void deleteGoalById(int id){
@@ -68,5 +68,14 @@ public class GoalService {
             toReturn.add(goalDTO);
         }
         return toReturn;
+    }
+
+    public void copyGoalProperties(Goal goal, GoalDTO goalDTO) {
+        goal.setName(goalDTO.getName());
+        goal.setDescription(goalDTO.getDescription());
+        goal.setActionPlan(goalDTO.getActionPlan());
+        goal.setProgress(goalDTO.getProgress());
+        goal.setDeleted(goalDTO.getDeleted());
+        goal.setUserId(goalDTO.getUserId());
     }
 }

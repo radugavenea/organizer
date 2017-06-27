@@ -9,7 +9,7 @@
         function ($scope, $rootScope, $location, GoalService) {
             var self = this;
             self.goal = {id:null,name:'',description:'',actionPlan:'', progress:'', example:'',
-                userId:'',totalBudget:'', availableBudget:''};
+                userId:'',totalBudget:'', bookedBudget:''};
             self.goals = [];
 
             self.display = display;
@@ -64,6 +64,8 @@
             }
 
             function submit() {
+                self.goal.userId = $rootScope.globals.currentUser.id;
+                self.goal.deleted = '0';
                 if(self.goal.id===null){
                     console.log('Saving New Goal', self.goal);
                     createGoal(self.goal);
@@ -76,6 +78,7 @@
 
             function edit(id){
                 console.log('id to be edited', id);
+                console.log(self.goal);
                 for(var i = 0; i < self.goals.length; i++){
                     if(self.goals[i].id === id) {
                         self.goal = angular.copy(self.goals[i]);
@@ -94,7 +97,7 @@
 
             function reset(){
                 self.goal = {id:null,name:'',description:'',actionPlan:'', progress:'', example:'',
-                    userId:'',totalBudget:'', availableBudget:''};
+                    userId:'',totalBudget:'', bookedBudget:''};
                 $scope.myForm.$setPristine(); //reset Form
             }
 

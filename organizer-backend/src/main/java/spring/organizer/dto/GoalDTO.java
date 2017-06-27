@@ -1,8 +1,6 @@
 package spring.organizer.dto;
 
-import java.sql.Time;
 import java.time.Duration;
-import java.util.Date;
 
 /**
  * Created by radu on 27.06.2017.
@@ -109,11 +107,11 @@ public class GoalDTO {
         this.totalBudget = totalBudget;
     }
 
-    public String getAvailableBudget() {
+    public String getBookedBudget() {
         return availableBudget;
     }
 
-    public void setAvailableBudget(String availableBudget) {
+    public void setBookedBudget(String availableBudget) {
         this.availableBudget = availableBudget;
     }
 

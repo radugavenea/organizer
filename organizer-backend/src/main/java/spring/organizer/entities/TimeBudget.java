@@ -3,24 +3,20 @@ package spring.organizer.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Duration;
-import java.util.Date;
 
 /**
  * Created by radu on 19.06.2017.
  */
+
 @Entity
 @Table(name = "timebudget")
 public class TimeBudget implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer id;
-    @Transient
     private Duration totalTime;
-    @Transient
     private Duration bookedTime;
     private Integer goalId;
-    private String totalTimeString;
-    private String bookedTimeString;
 
     public TimeBudget() {
     }
@@ -43,7 +39,6 @@ public class TimeBudget implements Serializable {
         this.id = id;
     }
 
-
     @Column(name = "goal_id")
     public Integer getGoalId() {
         return goalId;
@@ -53,46 +48,26 @@ public class TimeBudget implements Serializable {
         this.goalId = goalId;
     }
 
-
     @Column(name = "total_budget")
-    public String getTotalTimeString(){
-        return totalTimeString;
+    @Convert(converter = DurationToStringConverter.class)
+    public Duration getTotalTime(){
+        return this.totalTime;
     }
-    public void setTotalTimeString(String time){
-        this.totalTimeString = time;
+    public void setTotalTime(Duration time){
+        this.totalTime = time;
     }
 
     @Column(name = "booked_time")
-    public String getBookedTimeString(){
-        return bookedTimeString;
-    }
-    public void setBookedTimeString(String time){
-        this.bookedTimeString = time;
-    }
-
-
-    @PostLoad
-    public void init(){
-        this.totalTime = this.totalTimeString == null ? null : Duration.parse(this.totalTimeString);
-        this.bookedTime = this.bookedTimeString == null ? null : Duration.parse(this.bookedTimeString);
-    }
-
-    @Transient
-    public Duration getTotalTime() {
-        return this.totalTime;
-    }
-
-    public void setTotalTime(Duration totalTime) {
-        this.totalTimeString = totalTime == null ? null : totalTime.toString();
-    }
-
-    @Transient
-    public Duration getBookedTime() {
+    @Convert(converter = DurationToStringConverter.class)
+    public Duration getBookedTime(){
         return this.bookedTime;
     }
-
-    public void setBookedTime(Duration bookedTime) {
-        this.bookedTimeString = bookedTime == null ? null : bookedTime.toString();
+    public void setBookedTime(Duration time){
+        this.bookedTime = time;
     }
 
 }
+
+
+
+
