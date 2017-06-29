@@ -13,7 +13,6 @@ public class GoalDTO {
     private String actionPlan;
     private String progress;
     private String example;
-    private Integer deleted;
     private Integer userId;
     private String totalBudget;
     private String availableBudget;
@@ -22,14 +21,13 @@ public class GoalDTO {
     }
 
     public GoalDTO(Integer id, String name, String description, String actionPlan, String progress,
-                   String example, Integer deleted, Integer userId, String totalBudget, String availableBudget) {
+                   String example, Integer userId, String totalBudget, String availableBudget) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.actionPlan = actionPlan;
         this.progress = progress;
         this.example = example;
-        this.deleted = deleted;
         this.userId = userId;
         this.totalBudget = totalBudget;
         this.availableBudget = availableBudget;
@@ -83,14 +81,6 @@ public class GoalDTO {
         this.example = example;
     }
 
-    public Integer getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Integer deleted) {
-        this.deleted = deleted;
-    }
-
     public Integer getUserId() {
         return userId;
     }
@@ -123,7 +113,6 @@ public class GoalDTO {
         private String nestedactionPlan;
         private String nestedprogress;
         private String nestedexample;
-        private Integer nesteddeleted;
         private Integer nesteduserId;
         private Duration nestedtotalBudget;
         private Duration nestedavailableBudget;
@@ -152,10 +141,6 @@ public class GoalDTO {
             this.nestedexample = example;
             return this;
         }
-        public Builder deleted(Integer deleted){
-            this.nesteddeleted = deleted;
-            return this;
-        }
         public Builder userId(Integer userId){
             this.nesteduserId = userId;
             return this;
@@ -171,7 +156,7 @@ public class GoalDTO {
 
         public GoalDTO create() {
             return new GoalDTO(nestedid,nestedname,nesteddescription,nestedactionPlan,nestedprogress,
-                    nestedexample,nesteddeleted,nesteduserId,
+                    nestedexample,nesteduserId,
                     Long.toString(nestedtotalBudget.toHours()),
                     Long.toString(nestedavailableBudget.toHours()));
         }

@@ -8,7 +8,7 @@
     eventModule.controller('EventController', ['$scope', '$rootScope', '$location', 'EventService',
         function ($scope, $rootScope, $location, EventService) {
             var self = this;
-            self.event = {id:null,name:'',startDate:'',endDate:'', RemainderDate:'', note:'',
+            self.event = {id:null,name:'',startDate:'',endDate:'', remainderDate:'', note:'',
                 goalId:'', userId:''};
             self.events = [];
 
@@ -17,6 +17,7 @@
             self.remove = remove;
             self.reset = reset;
             self.goToGoals = goToGoals;
+            self.display = display;
 
             fetchAllEvents();
 
@@ -64,12 +65,12 @@
             }
 
             function submit() {
-                // self.goal.userId = $rootScope.globals.currentUser.id;
+                self.event.goalId = $rootScope.global.goalModel;
                 if(self.event.id===null){
                     console.log('Saving New Event', self.event);
                     createEvent(self.event);
                 }else{
-                    updateEvent(self.event, self.event.id);
+                    updateEvent(self.event.id, self.event);
                     console.log('Event updated with id ', self.event.id);
                 }
                 reset();
@@ -77,10 +78,10 @@
 
             function edit(id){
                 console.log('id to be edited', id);
-                console.log(self.event);
                 for(var i = 0; i < self.events.length; i++){
                     if(self.events[i].id === id) {
                         self.event = angular.copy(self.events[i]);
+                        $rootScope.global.goalModel = self.event.goalId;
                         break;
                     }
                 }
@@ -95,7 +96,7 @@
             }
 
             function reset(){
-                self.event = {id:null,name:'',startDate:'',endDate:'', RemainderDate:'', note:'',
+                self.event = {id:null,name:'',startDate:'',endDate:'', remainderDate:'', note:'',
                     goalId:'', userId:''};
                 $scope.myForm.$setPristine(); //reset Form
             }
@@ -103,6 +104,12 @@
             function goToGoals(){
                 // console.log($rootScope.globals);    //test
                 $location.path('/home/goals');
+            }
+
+            function display(data) {
+                console.log(data);
+                // console.log(data.goals);
+                console.log($rootScope.global);
             }
 
         }

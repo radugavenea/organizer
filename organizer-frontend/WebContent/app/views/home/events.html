@@ -18,6 +18,10 @@
 
     }
 
+    .title-input-background{
+        background-color: #f5f5f5;
+    }
+
     .textarea-custom {
         border: none;
         overflow: auto;
@@ -30,6 +34,10 @@
 
     .panel-height {
         min-height:80vh;
+    }
+
+    .notes-padding-left{
+        padding-left:1em;
     }
 
     .nopadding-nomargin{
@@ -139,12 +147,12 @@
 
                 <div class="panel panel-default panel-height">
                     <div class="panel-heading">
-                        <input type="text" ng-model="eventCtrl.event.name" class="username form-control input-sm textarea-custom" placeholder="...enter event name">
+                        <input type="text" ng-model="eventCtrl.event.name" class="username form-control input-sm textarea-custom title-input-background" placeholder="...enter event name">
                     </div>
                     <div class="panel-body">
 
                         <div class="formcontainer form-padding">
-                            <form ng-submit="goalCtrl.submit()" name="myForm" class="form-horizontal">
+                            <form ng-submit="eventCtrl.submit()" name="myForm" class="form-horizontal">
                                 <input type="hidden" ng-model="eventCtrl.event.id" />
 
 
@@ -177,35 +185,38 @@
 
 
                                 <div class="row row-margin-bottom">
-                                    <label for="example">Notes</label>
+                                    <label for="example" class="notes-padding-left">Notes</label>
                                     <textarea class="form-control textarea-custom" rows="4" id="example" ng-model="eventCtrl.event.note" placeholder="...enter note"></textarea>
                                 </div>
 
-                                <!--<div class="row row-margin-bottom">-->
-                                    <!--<div class="form-group col-md-12">-->
-                                        <!--<label class="col-md-6 control-lable">Time budget available: </label>-->
-                                        <!--<div class="col-md-3">-->
-                                            <!--<span>{{goalCtrl.goal.totalBudget - goalCtrl.goal.bookedBudget}}</span>-->
-                                        <!--</div>-->
-                                        <!--<span>hours</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
+                                <div class="row row-margin-bottom">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-md-2 control-lable" for="repeatSelect">Goal: </label>
+                                        <div class="col-md-10">
+
+                                            <!--<select name="repeatSelect" id="repeatSelect" class="form-control textarea-custom" ng-model="global.goalModel">-->
+                                                <!--<option ng-selected="{{option.id == event.goalId}}" ng-repeat="option in global.goals" value="{{option.id}}" >{{option.name}}</option>-->
+                                            <!--</select>-->
+                                            <select name="repeatSelect" id="repeatSelect" class="form-control textarea-custom"
+                                                    ng-model="global.goalModel" ng-options="obj.id as obj.name for obj in global.goals">
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="form-actions floatRight">
                                         <!--<button type="submit" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">{{!user.id ? 'Add' : 'Update'}}</button>-->
                                         <input type="submit" value="{{!eventCtrl.event.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                                        <button type="button" ng-click="eventCtrl.remove(goalCtrl.goal.id)" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="button" ng-click="eventCtrl.remove(eventCtrl.event.id)" class="btn btn-danger btn-sm">Delete</button>
                                         <button type="button" ng-click="eventCtrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

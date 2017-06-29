@@ -33,29 +33,35 @@ public class GoalController {
         return goalService.findAllGoalDTOsById(id);
     }
 
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<GoalDTO> insertGoal(@RequestBody GoalDTO goalDTO){
-        Goal goal = new Goal(
-                null,
-                goalDTO.getName(),
-                goalDTO.getDescription(),
-                goalDTO.getActionPlan(),
-                goalDTO.getProgress(),
-                goalDTO.getExample(),
-                0,  // deleted
-                goalDTO.getUserId()
-        );
+        Goal goal = new Goal();
+//                null,
+//                goalDTO.getName(),
+//                goalDTO.getDescription(),
+//                goalDTO.getActionPlan(),
+//                goalDTO.getProgress(),
+//                goalDTO.getExample(),
+//                0,  // deleted
+//                goalDTO.getUserId()
+//        );
+        goalService.copyGoalProperties(goal,goalDTO);
         int goalId = goalService.insertOrUpdateGoal(goal).getId();
 
-        TimeBudget timeBudget = new TimeBudget(
-                null,
-                Duration.parse("PT" + goalDTO.getTotalBudget() + "H"),
-                Duration.parse("PT0H"),
-                goalId
-        );
+        goalDTO.setId(goalId);
+        TimeBudget timeBudget = new TimeBudget();
+//                (
+//                null,
+//                Duration.parse("PT" + goalDTO.getTotalBudget() + "H"),
+//                Duration.parse("PT0H"),
+//                goalId
+//        );
+        timeBudgetService.copyTimeBudgetProperties(timeBudget,goalDTO);
         timeBudgetService.insertOrUpdateTimeBudget(timeBudget);
-        return new ResponseEntity<>(goalDTO, HttpStatus.OK);
+        return new ResponseEntity<>(goalDTO, HttpStatus.CREATED);
     }
+
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<GoalDTO> updateGoal(@PathVariable("id") int id,@RequestBody GoalDTO goalDTO){
@@ -75,6 +81,7 @@ public class GoalController {
         timeBudgetService.insertOrUpdateTimeBudget(timeBudget);
         return new ResponseEntity<GoalDTO>(goalDTO,HttpStatus.OK);
     }
+
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<GoalDTO> deleteGoalById(@PathVariable("id") int id){

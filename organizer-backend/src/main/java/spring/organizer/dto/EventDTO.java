@@ -90,7 +90,7 @@ public class EventDTO {
 
     public static class Builder{
 
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd  HH:mm");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         private Integer nestedid;
         private String nestedname;

@@ -8,6 +8,10 @@ import spring.organizer.entities.Goal;
 import spring.organizer.repositories.EventRepository;
 import spring.organizer.repositories.GoalRepository;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +21,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class EventService {
+
+    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
     private EventRepository eventRepository;
@@ -58,6 +64,20 @@ public class EventService {
     }
 
 
+    public Event insertOrUpdateEvent(Event event) throws ParseException {
+//        Event event = new Event(null,
+//                eventDTO.getName(),
+//                new Date(format.parse(eventDTO.getStartDate()).getTime()),
+//                new Date(format.parse(eventDTO.getEndDate()).getTime()),
+//                new Date(format.parse(eventDTO.getRemainderDate()).getTime()),
+//                eventDTO.getNote(),
+//                0,0,
+//                eventDTO.getGoalId());
+        return eventRepository.save(event);
+    }
+
+
+
     private EventDTO toEventDTO(Event event) {
         EventDTO eventDTO = new EventDTO.Builder()
                 .id(event.getId())
@@ -69,5 +89,28 @@ public class EventService {
                 .goalId(event.getGoalId())
                 .create();
         return eventDTO;
+    }
+
+
+    public Event findById(int id) {
+        return eventRepository.findById(id);
+    }
+
+    public int deleteEvent(int id) {
+        eventRepository.delete(id);
+        return id;
+    }
+
+    public void copyEventProperties(Event event, EventDTO eventDTO) throws ParseException {
+        event.setName(eventDTO.getName());
+        event.setStartDate(new Date(format.parse(eventDTO.getStartDate()).getTime()));
+        event.setEndDate(new Date(format.parse(eventDTO.getEndDate()).getTime()));
+        event.setRemainderDate(new Date(format.parse(eventDTO.getRemainderDate()).getTime()));
+        event.setNote(eventDTO.getNote());
+        event.setGoalId(eventDTO.getGoalId());
+        if(event.getId() == null){
+            event.setArchived(0);
+            event.setDeleted(0);
+        }
     }
 }

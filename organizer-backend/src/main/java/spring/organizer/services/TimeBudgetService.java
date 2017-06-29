@@ -32,7 +32,11 @@ public class TimeBudgetService {
 
     public void copyTimeBudgetProperties(TimeBudget timeBudget, GoalDTO goalDTO) {
         timeBudget.setTotalTime(Duration.parse("PT" + goalDTO.getTotalBudget() + "H"));
-        timeBudget.setBookedTime(Duration.parse("PT" + goalDTO.getBookedBudget() + "H"));
+        if(timeBudget.getId() == null) {
+            timeBudget.setBookedTime(Duration.parse("PT0H"));
+        } else{
+            timeBudget.setBookedTime(Duration.parse("PT" + goalDTO.getBookedBudget() + "H"));
+        }
         timeBudget.setGoalId(goalDTO.getId());
     }
 }

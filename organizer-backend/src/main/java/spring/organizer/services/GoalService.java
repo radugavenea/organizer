@@ -37,8 +37,9 @@ public class GoalService {
 //        return goal.getId();
     }
 
-    public void deleteGoalById(int id){
+    public int deleteGoalById(int id){
         goalRepository.delete(id);
+        return id;
         /// should also delete associated timeBudget
 
     }
@@ -56,7 +57,6 @@ public class GoalService {
                     .actionPlan(goal.getActionPlan())
                     .progress(goal.getProgress())
                     .example(goal.getExample())
-                    .deleted(goal.getDeleted())
                     .userId(goal.getUserId())
                     .totalBudget(timeBudget.getTotalTime())
                     .availableBudget(timeBudget.getBookedTime())
@@ -71,7 +71,10 @@ public class GoalService {
         goal.setDescription(goalDTO.getDescription());
         goal.setActionPlan(goalDTO.getActionPlan());
         goal.setProgress(goalDTO.getProgress());
-        goal.setDeleted(goalDTO.getDeleted());
+        goal.setExample(goalDTO.getExample());
         goal.setUserId(goalDTO.getUserId());
+        if(goalDTO == null){
+            goal.setDeleted(0);
+        }
     }
 }

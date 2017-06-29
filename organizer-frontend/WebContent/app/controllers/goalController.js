@@ -26,6 +26,7 @@
             self.remove = remove;
             self.reset = reset;
             self.goToEvents = goToEvents;
+            self.setGoals = setGoals;
 
             fetchAllGoals();
 
@@ -35,6 +36,7 @@
                     .then(
                         function(d) {
                             self.goals = d;
+                            setGoals(d);
                         },
                         function(errResponse){
                             console.error('Error while fetching Goals');
@@ -108,6 +110,13 @@
                 self.goal = {id:null,name:'',description:'',actionPlan:'', progress:'', example:'',
                     userId:'',totalBudget:'', bookedBudget:''};
                 $scope.myForm.$setPristine(); //reset Form
+            }
+
+            function setGoals(goals) {
+                $rootScope.global = {
+                    goalModel: null,
+                    goals: goals
+                }
             }
 
             function display(goal) {

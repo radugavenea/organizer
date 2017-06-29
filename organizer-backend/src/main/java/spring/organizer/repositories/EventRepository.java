@@ -23,4 +23,6 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     @Override
     void delete(Integer integer);
+
+    Event findById(int id);
 }
