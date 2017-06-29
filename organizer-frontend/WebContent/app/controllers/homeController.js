@@ -17,17 +17,23 @@
         })
     });
 
-    homeModule.controller('HomeController', ['$rootScope', '$location',
-        function ($rootScope, $location) {
+    homeModule.controller('HomeController', ['$rootScope', '$location', 'HomeService',
+        function ($rootScope, $location, HomeService) {
             var self = this;
 
             self.logout = logout;
+            self.generateReport = generateReport;
 
             function logout() {
                 // new AuthenticationService.clearCredentials();   // there are cleared on login page initialization
                 console.log($rootScope.globals);
                 $location.path('/login');
             }
+
+            function generateReport() {
+                HomeService.generatePdf();
+            }
+
         }]
     );
 

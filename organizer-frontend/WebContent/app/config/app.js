@@ -10,6 +10,7 @@
 		'goalController',
 		'goalService',
         'eventController',
-        'eventService'
+        'eventService',
+        'homeService',
     ])
 })();

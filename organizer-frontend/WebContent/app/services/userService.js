@@ -24,7 +24,7 @@
             }
 
             function getById(id) {
-                return $http.get(config.API_URL + '/user/details/' + id).then(handleSuccess, handleError('Error getting user by id'));
+                    return $http.get(config.API_URL + '/user/details/' + id).then(handleSuccess, handleError('Error getting user by id'));
             }
 
             function getByUsername(username) {

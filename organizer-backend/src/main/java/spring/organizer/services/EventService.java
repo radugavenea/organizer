@@ -34,6 +34,12 @@ public class EventService {
     private GoalRepository goalRepository;
 
 
+
+    public List<Event> findAll() {
+        return eventRepository.findAll();
+    }
+
+
     public List<EventDTO> findAllByGoalId(int id) {
         List<EventDTO> toReturnList = new ArrayList<>();
         List<Event> events = eventRepository.findAllByGoalId(id).stream()
