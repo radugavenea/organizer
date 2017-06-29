@@ -29,8 +29,8 @@ import java.util.List;
 public class ReportService {
 
 
-    @Autowired
-    ServletContext ctx;
+//    @Autowired
+//    ServletContext ctx;
 
     private static Font font = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static Font smallFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
@@ -39,20 +39,20 @@ public class ReportService {
 
     public void generateReport(java.util.List<Event> events) throws IOException, DocumentException {
 
-        String path = ctx.getRealPath("/reports/" + LocalTime.now().toString()  + ".pdf");
-        File file = new File(path);
-        if (!file.getParentFile().exists())
-            file.getParentFile().mkdirs();
-        if (!file.exists())
-            file.createNewFile();
-
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(path));
-
-        document.open();
-        addMetaData(document);
-        addContent(document, events);
-        document.close();
+//        String path = ctx.getRealPath("/reports/" + LocalTime.now().toString()  + ".pdf");
+//        File file = new File(path);
+//        if (!file.getParentFile().exists())
+//            file.getParentFile().mkdirs();
+//        if (!file.exists())
+//            file.createNewFile();
+//
+//        Document document = new Document();
+//        PdfWriter.getInstance(document, new FileOutputStream(path));
+//
+//        document.open();
+//        addMetaData(document);
+//        addContent(document, events);
+//        document.close();
     }
 
 

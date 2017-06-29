@@ -140,9 +140,6 @@ public class EventDTO {
 
         public EventDTO create(){
             return new EventDTO(nestedid,nestedname,
-//                    df.format(nestedstartDate),
-//                    df.format(nestedendDate),
-//                    df.format(nestedremainderDate),
                     nestedstartDate.format(format),
                     nestedendDate.format(format),
                     nestedremainderDate.format(format),

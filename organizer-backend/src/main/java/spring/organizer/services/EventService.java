@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 @Service
 public class EventService {
 
-    private DateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Autowired
@@ -79,6 +78,10 @@ public class EventService {
         return eventRepository.save(event);
     }
 
+    public int saveOrUpdateEvent(Event event){
+        return eventRepository.save(event).getId();
+    }
+
 
 
     public Event findById(int id) {
@@ -102,9 +105,6 @@ public class EventService {
 
     public void copyEventProperties(Event event, EventDTO eventDTO) throws ParseException {
         event.setName(eventDTO.getName());
-//        event.setStartDate(new Date(format.parse(eventDTO.getStartDate()).getTime()));
-//        event.setEndDate(new Date(format.parse(eventDTO.getEndDate()).getTime()));
-//        event.setRemainderDate(eventDTO.getRemainderDate().equals("") ? null : new Date(format.parse(eventDTO.getRemainderDate()).getTime()));
         event.setStartDate(LocalDateTime.parse(eventDTO.getStartDate(), format));
         event.setEndDate(LocalDateTime.parse(eventDTO.getEndDate(), format));
         event.setRemainderDate(eventDTO.getRemainderDate().equals("") ? null : LocalDateTime.parse(eventDTO.getRemainderDate(), format));

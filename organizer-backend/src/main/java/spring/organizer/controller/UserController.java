@@ -1,6 +1,5 @@
 package spring.organizer.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +37,7 @@ public class UserController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<User> insertUser(@RequestBody User user) {
-        userService.saveOrUpdate(user);
+        userService.insertOrUpdate(user);
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
@@ -52,7 +51,7 @@ public class UserController {
         catch (ResourceNotFoundException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        userService.saveOrUpdate(user);
+        userService.insertOrUpdate(user);
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 

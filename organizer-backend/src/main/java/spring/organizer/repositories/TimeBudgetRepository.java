@@ -23,4 +23,6 @@ public interface TimeBudgetRepository extends JpaRepository<TimeBudget,Integer>{
     void delete(Integer integer);
 
     TimeBudget findByGoalId(int id);
+
+    TimeBudget findById(Integer id);
 }

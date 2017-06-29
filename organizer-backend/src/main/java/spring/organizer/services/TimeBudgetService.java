@@ -32,6 +32,10 @@ public class TimeBudgetService {
     }
 
 
+    public TimeBudget findById(Integer id) {
+        return timeBudgetRepository.findById(id);
+    }
+
     public int deleteTimeBudgetById(int id){
         timeBudgetRepository.delete(id);
         return id;
