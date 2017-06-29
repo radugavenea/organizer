@@ -110,17 +110,28 @@
                         <a ng-click="eventCtrl.goToGoals()">Goals</a>
                     </li>
                     <li class="active">
-                        <a>Events</a>
+                        <a ng-click="eventCtrl.refresh()" >Events</a>
                     </li>
                 </ul><br>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..">
+                    <input type="text" class="form-control" placeholder="Search.." ng-model="eventCtrl.textToSearch">
                     <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
+                        <button class="btn btn-default" type="button" ng-click="eventCtrl.search(eventCtrl.textToSearch)">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                    </span>
+                </div><br><br>
+
+                <div class="panel panel-default form-padding">
+                    <label class="control-label" for="bla">Filter by goal: </label>
+                    <div>
+                        <select name="repeatSelect2" id="bla" class="form-control"
+                                ng-model="eventCtrl.selectedGoal" ng-options="obj.id as obj.name for obj in global.goals">
+                        </select>
+                    </div><br>
+                    <div class="btn btn-default" ng-click="eventCtrl.filter(eventCtrl.selectedGoal)">Filter</div>
                 </div>
+
             </div>
 
             <div class="col-md-4" style = "padding-top:100px">

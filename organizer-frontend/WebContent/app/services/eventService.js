@@ -31,15 +31,15 @@
             }
 
             function insertEvent(event) {
-                return $http.post(config.API_URL + '/events/', event).then(handleSuccess, handleError("Error fetching events"));
+                return $http.post(config.API_URL + '/events/', event).then(handleSuccess, handleError("Error inserting new event"));
             }
 
             function updateEvent(id, event) {
-                return $http.put(config.API_URL + '/events/' + id, event).then(handleSuccess, handleError("Error fetching events"));
+                return $http.put(config.API_URL + '/events/' + id, event).then(handleSuccess, handleError("Error updating event"));
             }
 
             function deleteEvent(id) {
-                return $http.delete(config.API_URL + '/events/' + id).then(handleSuccess, handleError("Error fetching events"));
+                return $http.delete(config.API_URL + '/events/' + id).then(handleSuccess, handleError("Error deleting event"));
             }
 
 

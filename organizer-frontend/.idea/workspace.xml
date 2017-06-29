@@ -9,15 +9,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/controller/EventController.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/controller/EventController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/controller/GoalController.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/controller/GoalController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/dto/EventDTO.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/dto/EventDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/dto/GoalDTO.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/dto/GoalDTO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/repositories/EventRepository.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/repositories/EventRepository.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/entities/Event.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/entities/Event.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/entities/TimeBudget.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/entities/TimeBudget.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/services/EventService.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/services/EventService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/services/GoalService.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/services/GoalService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/services/TimeBudgetService.java" afterPath="$PROJECT_DIR$/../organizer-backend/src/main/java/spring/organizer/services/TimeBudgetService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/app/controllers/eventController.js" afterPath="$PROJECT_DIR$/WebContent/app/controllers/eventController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/app/controllers/goalController.js" afterPath="$PROJECT_DIR$/WebContent/app/controllers/goalController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/app/services/eventService.js" afterPath="$PROJECT_DIR$/WebContent/app/services/eventService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/app/views/home/events.html" afterPath="$PROJECT_DIR$/WebContent/app/views/home/events.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebContent/app/views/home/goals.html" afterPath="$PROJECT_DIR$/WebContent/app/views/home/goals.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,11 +32,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="events.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="events.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/app/views/home/events.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="149" column="151" lean-forward="false" selection-start-line="149" selection-start-column="151" selection-end-line="149" selection-end-column="151" />
+            <state relative-caret-position="143">
+              <caret line="112" column="54" lean-forward="false" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="54" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
@@ -55,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="eventController.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="eventController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/app/controllers/eventController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="83" column="72" lean-forward="false" selection-start-line="83" selection-start-column="72" selection-end-line="83" selection-end-column="72" />
+            <state relative-caret-position="229">
+              <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -92,8 +91,8 @@
       <file leaf-file-name="eventService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/app/services/eventService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+            <state relative-caret-position="476">
+              <caret line="51" column="60" lean-forward="true" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
               <folding>
                 <element signature="e#0#41#0" expanded="false" />
               </folding>
@@ -199,11 +198,11 @@
         <option value="$PROJECT_DIR$/WebContent/app/controllers/homeController.js" />
         <option value="$PROJECT_DIR$/WebContent/app/controllers/loginController.js" />
         <option value="$PROJECT_DIR$/WebContent/app/services/goalService.js" />
-        <option value="$PROJECT_DIR$/WebContent/app/services/eventService.js" />
         <option value="$PROJECT_DIR$/WebContent/app/controllers/goalController.js" />
-        <option value="$PROJECT_DIR$/WebContent/app/controllers/eventController.js" />
         <option value="$PROJECT_DIR$/WebContent/app/views/home/goals.html" />
+        <option value="$PROJECT_DIR$/WebContent/app/services/eventService.js" />
         <option value="$PROJECT_DIR$/WebContent/app/views/home/events.html" />
+        <option value="$PROJECT_DIR$/WebContent/app/controllers/eventController.js" />
       </list>
     </option>
   </component>
@@ -951,12 +950,12 @@
       <workItem from="1498467829009" duration="228000" />
       <workItem from="1498468706658" duration="10098000" />
       <workItem from="1498492268263" duration="39432000" />
-      <workItem from="1498604619965" duration="13579000" />
+      <workItem from="1498604619965" duration="21186000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119043000" />
+    <option name="totallyTimeSpent" value="126650000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -996,7 +995,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1274,16 +1273,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/app/services/eventService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/app/controllers/userControllers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
@@ -1320,16 +1309,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/app/controllers/eventController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="83" column="72" lean-forward="false" selection-start-line="83" selection-start-column="72" selection-end-line="83" selection-end-column="72" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/app/views/home/goals.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2175">
@@ -1340,12 +1319,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/app/services/eventService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="51" column="60" lean-forward="true" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/app/views/home/events.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="149" column="151" lean-forward="false" selection-start-line="149" selection-start-column="151" selection-end-line="149" selection-end-column="151" />
+        <state relative-caret-position="143">
+          <caret line="112" column="54" lean-forward="false" selection-start-line="112" selection-start-column="47" selection-end-line="112" selection-end-column="54" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/app/controllers/eventController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="21" column="35" lean-forward="false" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
           </folding>
         </state>
       </provider>

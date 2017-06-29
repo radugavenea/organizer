@@ -6,8 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.organizer.dto.EventDTO;
 import spring.organizer.entities.Event;
+import spring.organizer.entities.TimeBudget;
 import spring.organizer.errorhandler.ResourceNotFoundException;
 import spring.organizer.services.EventService;
+import spring.organizer.services.TimeBudgetService;
 
 import java.text.ParseException;
 import java.util.List;
@@ -22,6 +24,9 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
+
+    @Autowired
+    private TimeBudgetService timeBudgetService;
 
     @RequestMapping(value = "/byUser/{id}", method = RequestMethod.GET)
     public List<EventDTO> getAllEventsByUserId(@PathVariable("id") int id) {
@@ -38,7 +43,11 @@ public class EventController {
     public ResponseEntity<EventDTO> insertEvent(@RequestBody EventDTO eventDTO) throws ParseException {
         Event event = new Event();
         eventService.copyEventProperties(event,eventDTO);
-        eventService.insertOrUpdateEvent(event);
+        if (eventService.insertOrUpdateEvent(event) == null){
+            return new ResponseEntity<EventDTO>(HttpStatus.CONFLICT);
+        }
+        // update booked time
+        timeBudgetService.updateTimeBudgetForNewEvent(event);
         return new ResponseEntity<EventDTO>(HttpStatus.CREATED);
     }
 
@@ -60,12 +69,17 @@ public class EventController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<EventDTO> deleteEvent(@PathVariable("id") int id){
+        Event event;
         try{
+            event = eventService.findById(id);
+            event.setDeleted(1);
             eventService.deleteEvent(id);
         }
         catch (ResourceNotFoundException ex){
             return new ResponseEntity<EventDTO>(HttpStatus.NOT_FOUND);
         }
+        // update booked time
+        timeBudgetService.updateTimeBudgetForNewEvent(event);
         return new ResponseEntity<EventDTO>(HttpStatus.NO_CONTENT);
     }
 

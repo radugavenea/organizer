@@ -2,6 +2,8 @@ package spring.organizer.dto;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -91,12 +93,13 @@ public class EventDTO {
     public static class Builder{
 
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        private DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         private Integer nestedid;
         private String nestedname;
-        private Date nestedstartDate;
-        private Date nestedendDate;
-        private Date nestedremainderDate;
+        private LocalDateTime nestedstartDate;
+        private LocalDateTime nestedendDate;
+        private LocalDateTime nestedremainderDate;
         private String nestednote;
         private Integer nestedgoalId;
 
@@ -110,17 +113,17 @@ public class EventDTO {
             return this;
         }
 
-        public Builder startDate(Date date){
+        public Builder startDate(LocalDateTime date){
             this.nestedstartDate = date;
             return this;
         }
 
-        public Builder endDate(Date date){
+        public Builder endDate(LocalDateTime date){
             this.nestedendDate = date;
             return this;
         }
 
-        public Builder remainderDate(Date date){
+        public Builder remainderDate(LocalDateTime date){
             this.nestedremainderDate = date;
             return this;
         }
@@ -137,9 +140,12 @@ public class EventDTO {
 
         public EventDTO create(){
             return new EventDTO(nestedid,nestedname,
-                    df.format(nestedstartDate),
-                    df.format(nestedendDate),
-                    df.format(nestedremainderDate),
+//                    df.format(nestedstartDate),
+//                    df.format(nestedendDate),
+//                    df.format(nestedremainderDate),
+                    nestedstartDate.format(format),
+                    nestedendDate.format(format),
+                    nestedremainderDate.format(format),
                     nestednote, nestedgoalId);
         }
 

@@ -2,6 +2,7 @@ package spring.organizer.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -14,9 +15,9 @@ public class Event implements Serializable{
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String name;
-    private Date startDate;
-    private Date endDate;
-    private Date remainderDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private LocalDateTime remainderDate;
     private String note;
     private Integer archived;
     private Integer deleted;
@@ -25,7 +26,7 @@ public class Event implements Serializable{
     public Event() {
     }
 
-    public Event(Integer id, String name, Date startDate, Date endDate, Date remainderDate, String note, Integer archived, Integer deleted, Integer goalId) {
+    public Event(Integer id, String name, LocalDateTime startDate, LocalDateTime endDate, LocalDateTime remainderDate, String note, Integer archived, Integer deleted, Integer goalId) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -58,29 +59,32 @@ public class Event implements Serializable{
     }
 
     @Column(name = "start_date")
-    public Date getStartDate() {
+    @Convert(converter = LocalDateTimeToSqlTimeConverter.class)
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
     @Column(name = "end_date")
-    public Date getEndDate() {
+    @Convert(converter = LocalDateTimeToSqlTimeConverter.class)
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
     @Column(name = "remainder_date")
-    public Date getRemainderDate() {
+    @Convert(converter = LocalDateTimeToSqlTimeConverter.class)
+    public LocalDateTime getRemainderDate() {
         return remainderDate;
     }
 
-    public void setRemainderDate(Date remainderDate) {
+    public void setRemainderDate(LocalDateTime remainderDate) {
         this.remainderDate = remainderDate;
     }
 

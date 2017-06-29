@@ -17,7 +17,9 @@
             self.remove = remove;
             self.reset = reset;
             self.goToGoals = goToGoals;
-            self.display = display;
+            self.filter = filter;
+            self.search = search;
+            self.refresh = refresh;
 
             fetchAllEvents();
 
@@ -29,7 +31,7 @@
                             self.events = d;
                         },
                         function(errResponse){
-                            console.error('Error while fetching Goals');
+                            console.error('Error while fetching Events');
                         }
                     );
             };
@@ -39,7 +41,7 @@
                     .then(
                         fetchAllEvents,
                         function(errResponse){
-                            console.error('Error while creating Goal');
+                            console.error(errResponse);
                         }
                     );
             }
@@ -49,7 +51,7 @@
                     .then(
                         fetchAllEvents,
                         function(errResponse){
-                            console.error('Error while updating Goal');
+                            console.error('Error while updating Event');
                         }
                     );
             }
@@ -59,7 +61,7 @@
                     .then(
                         fetchAllEvents,
                         function(errResponse){
-                            console.error('Error while deleting Goal');
+                            console.error('Error while deleting Event');
                         }
                     );
             }
@@ -95,6 +97,22 @@
                 deleteEvent(id);
             }
 
+            function filter(goalId){
+                console.log("This is the goalId to filter by: " + goalId);
+                EventService.getAllByUserId($rootScope.globals.currentUser.id).
+                then(
+                    function (data) {
+                        self.events = data;
+                        for(var i = self.events.length -1; i >= 0; i--){
+                            if(self.events[i].goalId !== goalId) {
+                                self.events.splice(i,1);
+                                // $rootScope.global.goalModel = self.event.goalId;
+                            }
+                        }
+                    }
+                );
+            }
+
             function reset(){
                 self.event = {id:null,name:'',startDate:'',endDate:'', remainderDate:'', note:'',
                     goalId:'', userId:''};
@@ -106,10 +124,23 @@
                 $location.path('/home/goals');
             }
 
-            function display(data) {
-                console.log(data);
-                // console.log(data.goals);
-                console.log($rootScope.global);
+            function refresh() {
+                fetchAllEvents();
+            }
+
+            function search(enteredText) {
+                EventService.getAllByUserId($rootScope.globals.currentUser.id).
+                then(
+                    function (data) {
+                        self.events = data;
+                        for(var i = self.events.length -1; i >= 0; i--){
+                            if(!self.events[i].name.startsWith(enteredText)) {
+                                self.events.splice(i,1);
+                                // $rootScope.global.goalModel = self.event.goalId;
+                            }
+                        }
+                    }
+                );
             }
 
         }

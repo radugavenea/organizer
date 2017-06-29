@@ -5,13 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.organizer.dto.GoalDTO;
+import spring.organizer.entities.Event;
 import spring.organizer.entities.Goal;
 import spring.organizer.entities.TimeBudget;
 import spring.organizer.errorhandler.ResourceNotFoundException;
+import spring.organizer.services.EventService;
 import spring.organizer.services.GoalService;
 import spring.organizer.services.TimeBudgetService;
 
-import java.time.Duration;
 import java.util.List;
 
 /**
@@ -28,6 +29,9 @@ public class GoalController {
     @Autowired
     private TimeBudgetService timeBudgetService;
 
+    @Autowired
+    private EventService eventService;
+
     @RequestMapping(value = "/all/{id}", method = RequestMethod.GET)
     public List<GoalDTO> getAllGoalsByUserId(@PathVariable("id") int id){
         return goalService.findAllGoalDTOsById(id);
@@ -37,26 +41,12 @@ public class GoalController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<GoalDTO> insertGoal(@RequestBody GoalDTO goalDTO){
         Goal goal = new Goal();
-//                null,
-//                goalDTO.getName(),
-//                goalDTO.getDescription(),
-//                goalDTO.getActionPlan(),
-//                goalDTO.getProgress(),
-//                goalDTO.getExample(),
-//                0,  // deleted
-//                goalDTO.getUserId()
-//        );
         goalService.copyGoalProperties(goal,goalDTO);
         int goalId = goalService.insertOrUpdateGoal(goal).getId();
 
         goalDTO.setId(goalId);
         TimeBudget timeBudget = new TimeBudget();
-//                (
-//                null,
-//                Duration.parse("PT" + goalDTO.getTotalBudget() + "H"),
-//                Duration.parse("PT0H"),
-//                goalId
-//        );
+
         timeBudgetService.copyTimeBudgetProperties(timeBudget,goalDTO);
         timeBudgetService.insertOrUpdateTimeBudget(timeBudget);
         return new ResponseEntity<>(goalDTO, HttpStatus.CREATED);
@@ -86,10 +76,14 @@ public class GoalController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<GoalDTO> deleteGoalById(@PathVariable("id") int id){
         TimeBudget timeBudget;
+        Goal goal;
         try{
             timeBudget = timeBudgetService.findTimeBudgetByGoalId(id);
-            timeBudgetService.deleteTimeBudgetById(timeBudget.getId());
-            goalService.deleteGoalById(id);
+            goal = goalService.findGoalById(id);
+
+            timeBudgetService.deleteTimeBudget(timeBudget);
+            goalService.deleteGoal(goal);
+            eventService.deleteAllEventsByGoalId(id);
         }
         catch (ResourceNotFoundException ex){
             return new ResponseEntity<GoalDTO>(HttpStatus.NOT_FOUND);

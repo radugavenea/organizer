@@ -16,15 +16,17 @@ public class TimeBudget implements Serializable {
     private Integer id;
     private Duration totalTime;
     private Duration bookedTime;
+    private Integer deleted;
     private Integer goalId;
 
     public TimeBudget() {
     }
 
-    public TimeBudget(Integer id, Duration totalTime, Duration bookedTime, Integer goalId) {
+    public TimeBudget(Integer id, Duration totalTime, Duration bookedTime, Integer deleted, Integer goalId) {
         this.id = id;
         this.totalTime = totalTime;
         this.bookedTime = bookedTime;
+        this.deleted = deleted;
         this.goalId = goalId;
     }
 
@@ -37,11 +39,6 @@ public class TimeBudget implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Column(name = "goal_id")
-    public Integer getGoalId() {
-        return goalId;
     }
 
     public void setGoalId(Integer goalId) {
@@ -64,6 +61,19 @@ public class TimeBudget implements Serializable {
     }
     public void setBookedTime(Duration time){
         this.bookedTime = time;
+    }
+
+    @Column(name = "deleted")
+    public Integer getDeleted(){
+        return deleted;
+    }
+    public void setDeleted(Integer deleted){
+        this.deleted = deleted;
+    }
+
+    @Column(name = "goal_id")
+    public Integer getGoalId() {
+        return goalId;
     }
 
 }
